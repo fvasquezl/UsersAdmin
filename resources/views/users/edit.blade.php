@@ -3,11 +3,7 @@
     @include('layouts.partials.contentHeader',$info =[
            'title' =>'Users',
            'subtitle' => 'Edit',
-           'paths' =>[
-               ['home','Home'],
-               ['users.index','Users'],
-               ['','Edit'],
-               ]
+           'breadCrumbs' =>['users','edit']
            ])
 @stop
 
@@ -47,9 +43,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Contrasena:</label>
+                            <label for="password">Password:</label>
                             <input name="password" type="password"
-                                   class="form-control @error('password') is-invalid @enderror" placeholder="Contrasena">
+                                   class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                             <span class="text-muted">Leave blank if you do not want to change the password</span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -59,7 +55,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password_confirmation">Repita la contrasena:</label>
+                            <label for="password_confirmation">Repeat your password:</label>
                             <input name="password_confirmation" type="password"
                                    class="form-control @error('password') is-invalid @enderror"
                                    placeholder="Repeat Password">

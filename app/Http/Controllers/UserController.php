@@ -2,48 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserWasCreated;
+use App\Http\Requests\SaveUsersRequest;
 use App\User;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
        $users = User::get();
+
        return view('users.index', compact('users'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
         return view('users.create');
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param SaveUsersRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(SaveUsersRequest $request)
     {
-        //
+        $user =$request->createUser();
+
+        UserWasCreated::dispatch($user,'1234');
+
+        return redirect()
+            ->route('users.index')
+            ->with('info', 'The user has been created successfully');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  User $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(User $user)
     {
@@ -54,7 +64,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(User $user)
     {
@@ -64,23 +74,31 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param SaveUsersRequest $request
+     * @param User $user
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(SaveUsersRequest $request, User $user)
     {
-        //
+        $request->updateUser($user);
+
+        return redirect()
+            ->route('users.index')
+            ->with('info', 'The user has been updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')
+            ->with('info', 'The user has been deleted successfully');
     }
 }

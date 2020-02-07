@@ -11,6 +11,11 @@
 |
 */
 
+
+Route::get('email',function(){
+    return new App\Mail\LoginCredentials(App\User::first(), 'asd123');
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');

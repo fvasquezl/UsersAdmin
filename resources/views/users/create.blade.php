@@ -3,11 +3,7 @@
     @include('layouts.partials.contentHeader',$info =[
            'title' =>'Users',
            'subtitle' => 'Create',
-           'paths' =>[
-               ['home','Home'],
-               ['users.index','Users'],
-               ['','Create'],
-               ]
+           'breadCrumbs' =>['users','create']
            ])
 @stop
 

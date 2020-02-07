@@ -3,11 +3,7 @@
     @include('layouts.partials.contentHeader',$info =[
            'title' =>'User',
            'subtitle' => 'Profile',
-           'paths' =>[
-               ['home','Home'],
-               ['users.index','Users'],
-               ['','Show'],
-               ]
+           'breadCrumbs' =>['users','show']
            ])
 @stop
 
@@ -25,21 +21,19 @@
                         </div>
 
                         <h3 class="profile-username text-center">{{ $user->name }}</h3>
-
-
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <i class="fas fa-envelope"></i> <b>Email</b> <a
                                     class="float-right">{{ $user->email }}</a>
                             </li>
                             <li class="list-group-item">
-                                <i class="fas fa-calendar-alt"></i> <b>Usuario desde:</b> <a
+                                <i class="fas fa-calendar-alt"></i> <b>User since:</b> <a
                                     class="float-right">{{ $user->present()->userCreatedat() }}</a>
                             </li>
 
                         </ul>
 
-                        <a href="{{ route('users.edit',$user)}}" class="btn btn-primary btn-block"><b>Editar</b></a>
+                        <a href="{{ route('users.edit',$user)}}" class="btn btn-primary btn-block"><b>Edit user</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>

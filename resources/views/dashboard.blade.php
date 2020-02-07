@@ -4,10 +4,7 @@
     @include('layouts.partials.contentHeader',$info =[
            'title' =>'Dashboard',
            'subtitle' => 'Information Page',
-           'paths' =>[
-               ['welcome','Home'],
-               ['dashboard','Dashboard']
-               ]
+           'breadCrumbs' =>['dashboard']
            ])
 @endsection
 

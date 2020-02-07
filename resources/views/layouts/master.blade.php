@@ -14,7 +14,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
-<div class="wrapper">
+<div class="wrapper" id="app">
 
     @include('layouts.partials.navBar')
     @include('layouts.partials.mainSideBar')

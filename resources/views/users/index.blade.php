@@ -5,11 +5,7 @@
     @include('layouts.partials.contentHeader',$info =[
            'title' =>'Users',
            'subtitle' => 'List',
-           'paths' =>[
-               ['home','Home'],
-               ['users.index','Users'],
-               ['','Index']
-               ]
+           'breadCrumbs' =>['users','index']
            ])
 @stop
 

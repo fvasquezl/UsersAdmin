@@ -10,7 +10,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @stack('styles')
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -29,8 +32,8 @@
         <!-- Main content -->
         <section class="content">
 
-            @yield('content')
-
+                @yield('content')
+       
         </section>
         <!-- /.content -->
     </div>
@@ -43,6 +46,8 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+
+@stack('scripts')
 
 </body>
 </html>

@@ -64,7 +64,7 @@
                             @enderror
                         </div>
 
-                        <span class="help-block">La contrasena sera generada y enviada al nuevo usuario via email</span>
+                        <span class="help-block">The password will be generated and sent to the new user via email</span>
 
                         <button class="btn btn-primary btn-block">Crear Usuario</button>
                     </form>

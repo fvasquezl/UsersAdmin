@@ -46,13 +46,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('sdp.index') }}" class="{{ setActiveRoute('sdp.index')}}">
+                            <a href="{{ route('spd.index') }}" class="{{ setActiveRoute('spd.index')}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Skus</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('sdp.create') }}" class="{{ setActiveRoute('sdp.create')}}">
+                            <a href="{{ route('spd.create') }}" class="{{ setActiveRoute('spd.create')}}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create Sku</p>
                             </a>

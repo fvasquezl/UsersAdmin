@@ -6,7 +6,7 @@ use App\Spd;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class SdpController extends Controller
+class SpdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class SdpController extends Controller
     public function index()
     {
         $skus = Spd::get();
-        return view('sdp.index',compact('skus'));
+        return view('spd.index', compact('skus'));
     }
 
     /**
@@ -26,7 +26,8 @@ class SdpController extends Controller
      */
     public function create()
     {
-        //
+        $spd = new Spd;
+        return view('spd.create', compact('spd'));
     }
 
     /**

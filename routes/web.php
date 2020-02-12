@@ -24,5 +24,5 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::resource('sdp', 'SdpController');
+Route::resource('spd', 'SpdController');
 Route::resource('users', 'UserController');

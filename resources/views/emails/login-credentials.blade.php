@@ -3,10 +3,10 @@
 
 Please, use this credential to login.
 
-@component('mail::table')
-    | User:| {{$user->email}} |  Password:| {{$password}}|
-    |----------:|:--------|------:|:------|
 
+@component('mail::panel')   
+ <b>User:</b> {{ $user->email }} <br>
+ <b>Password:</b> {{$password}}   
 @endcomponent
 
 @component('mail::button', ['url' => url('login')])

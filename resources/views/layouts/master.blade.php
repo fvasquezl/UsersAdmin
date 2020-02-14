@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,40 +16,47 @@
 
     @stack('styles')
 </head>
+
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper" id="app">
 
-    @include('layouts.partials.navBar')
-    @include('layouts.partials.mainSideBar')
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            @yield('content-header')
-        </section>
+    <!-- Site wrapper -->
+    <div class="wrapper" id="app">
 
-        <!-- Main content -->
-        <section class="content">
+        @include('layouts.partials.navBar')
+        @include('layouts.partials.mainSideBar')
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                @yield('content-header')
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
 
                 @yield('content')
-       
-        </section>
-        <!-- /.content -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        @include('layouts.partials.footer')
+        @include('layouts.partials.controlSidebar')
+
     </div>
-    <!-- /.content-wrapper -->
-    @include('layouts.partials.footer')
-    @include('layouts.partials.controlSidebar')
+    <!-- ./wrapper -->
 
-</div>
-<!-- ./wrapper -->
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
-
-@stack('scripts')
+    @unless(request()->is('spd/*'))
+        @include('spd.create')
+    @endunless
+    @stack('scripts')
+    @stack('modals')
 
 </body>
-</html>
 
+</html>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserWasCreated;
-use App\Http\Requests\SaveUsersRequest;
 use App\User;
 use Exception;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\SaveUsersRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -18,9 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-       $users = User::get();
+        $users = User::get();
 
-       return view('users.index', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -33,20 +33,17 @@ class UserController extends Controller
         return view('users.create');
     }
 
-
     /**
      * @param SaveUsersRequest $request
      * @return RedirectResponse
      */
     public function store(SaveUsersRequest $request)
     {
-        $user =$request->createUser();
-
-        UserWasCreated::dispatch($user,'1234');
+        $request->createUser();
 
         return redirect()
             ->route('users.index')
-            ->with('info', 'The user has been created successfully');
+            ->with('success', 'The user has been created successfully');
     }
 
     /**
@@ -57,7 +54,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -68,7 +65,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -84,7 +81,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('info', 'The user has been updated successfully');
+            ->with('success', 'The user has been updated successfully');
     }
 
     /**
@@ -96,9 +93,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+
         $user->delete();
 
-        return redirect()->route('users.index')
-            ->with('info', 'The user has been deleted successfully');
+        return redirect()->route('users.index');
     }
 }

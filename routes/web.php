@@ -11,10 +11,7 @@
 |
 */
 
-
-Route::get('email',function(){
-    return new App\Mail\LoginCredentials(App\User::first(), 'asd123');
-});
+use GuzzleHttp\Middleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::group(['middleware'=>'auth'],function(){
+    
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::resource('spd', 'SpdController');
-Route::resource('users', 'UserController');
+    Route::resource('spd', 'SpdController');
+    Route::resource('users', 'UserController');
+
+    Route::post('spd/{spd}/photos', 'PhotosController@store')->name('spd.photos.store');
+    Route::delete('photos/{photo}', 'PhotosController@destroy')->name('photos.destroy');
+});
+
+

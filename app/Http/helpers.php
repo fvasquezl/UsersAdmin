@@ -27,3 +27,7 @@ function paginateCollection($items, $perPage = 15, $page = null)
         ]
     );
 }
+
+function deletes(){
+
+}

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 @endpush
 
+
 @section('content')
     <div class="container-fluid">
         <div class="row ">
@@ -61,8 +62,7 @@
                                         <form action="{{ route('users.destroy', $user) }}" method="POST"
                                               style="display:inline">
                                             @csrf @method('DELETE')
-                                            <button class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Are you sure delete this user?')">
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure delete this user')">
                                                 <i class="fas fa-trash-alt"></i></button>
                                         </form>
                                     </td>

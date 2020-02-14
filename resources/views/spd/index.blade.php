@@ -20,12 +20,11 @@
                 </h3>
 
                 <div class="card-tools">
-                    <a href="{{ route('spd.create') }}" class="btn btn-primary">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="fa fa-plus"></i>
                         Create Sku
-                    </a>
+                    </button>
                 </div>
-
             </div>
 
             <div class="card-body">

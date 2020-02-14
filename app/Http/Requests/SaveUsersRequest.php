@@ -47,9 +47,12 @@ class SaveUsersRequest extends FormRequest
     public function createUser()
     {
         $this['password'] = Str::random(8);
+        
+        $user = User::create($this->all());
 
-       return  User::create($this->all());
+        UserWasCreated::dispatch($user, $this['password']);
 
+        return $user;
     }
 
     public function updateUser($user){

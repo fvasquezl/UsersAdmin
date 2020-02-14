@@ -1,15 +1,14 @@
-@csrf
+
 <div class="row ">
     <div class="col-lg-4">
         <div class="card mb-4 shadow-sm card-outline card-success">
 
             <div class="card-body">
 
-
                 <div class="form-group">
                     <label for="SKU">SKU:</label>
                     <input name='SKU' value="{{old('SKU',$spd->SKU) }}"
-                        class="form-control @error('SKU') is-invalid @enderror">
+                        class="form-control @error('SKU') is-invalid @enderror" disabled>
                     @error('SKU')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -156,10 +155,10 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="Languaje">Languaje:</label>
-                    <input name="Languaje" value="{{ old('Languaje', $spd->Languaje) }}"
-                        class="form-control  @error('Languaje') is-invalid @enderror">
-                    @error('Languaje')
+                    <label for="Language">Language:</label>
+                    <input name="Language" value="{{ old('Language', $spd->Language) }}"
+                        class="form-control  @error('Language') is-invalid @enderror">
+                    @error('Language')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -173,7 +172,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block">Crear Departamento</button>
+                    <button class="btn btn-primary btn-block">Store SKU</button>
                 </div>
             </div>
         </div>
@@ -196,7 +195,7 @@
     $(document).ready(function () {
         $('.editor').summernote({
             placeholder: 'Type here',
-           
+
             height:'135px',
             toolbar: [
                 ['style', ['style']],
@@ -209,20 +208,20 @@
     });
 
     var myDropzone = new Dropzone('.dropzone',{
-        url:"/spd/{{ $spd->SKU }}/documents",
-        // acceptedFiles: 'application/pdf',
-        paramName:'document',
+        url:"/spd/{{ $spd->SKU }}/photos",
+         acceptedFiles: 'image/*',
+         paramName:'photo',
 
         headers:{
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
         },
-        dictDefaultMessage: 'Arrastra los archivos aqui para subirlos'
+        dictDefaultMessage: 'Move here your images'
 
     });
 
     myDropzone.on('error',function(file,res){
-        var msg = res.errors.document[0];
-        $('.dz-error-message:last > span').text(msg);
+         var msg = res.errors.photo[0];
+         $('.dz-error-message:last > span').text(msg);
     });
 
     Dropzone.autoDiscover=false;

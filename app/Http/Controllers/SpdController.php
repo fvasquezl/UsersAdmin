@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveSdpResource;
 use App\Spd;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -26,8 +27,7 @@ class SpdController extends Controller
      */
     public function create()
     {
-        $spd = new Spd;
-        return view('spd.create', compact('spd'));
+        return view('spd.create');
     }
 
     /**
@@ -36,9 +36,11 @@ class SpdController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(SaveSdpResource $request)
     {
-        //
+       $sdp = $request->createSpd();
+
+        return redirect()->route('spd.edit',$sdp);
     }
 
     /**
@@ -58,9 +60,9 @@ class SpdController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Spd $spd)
     {
-        //
+       return view('spd.edit',compact('spd'));
     }
 
     /**
@@ -70,9 +72,11 @@ class SpdController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(SaveSdpResource $request, Spd $spd)
     {
-        //
+        $user = $request->updateSpd($spd);
+
+        return redirect()->route('spd.index')->with('success','The Sku has been created successfully');
     }
 
     /**

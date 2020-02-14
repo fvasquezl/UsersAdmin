@@ -76,7 +76,7 @@ class SpdController extends Controller
     {
         $user = $request->updateSpd($spd);
 
-        return redirect()->route('spd.index')->with('success','The Sku has been created successfully');
+        return back()->with('success','The Sku has been created successfully');
     }
 
     /**

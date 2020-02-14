@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Photo;
 use App\Spd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotosController extends Controller
 {
@@ -23,7 +24,7 @@ class PhotosController extends Controller
 
         $spd->photos()->create([
             'name' => request()->file('photo')->getClientOriginalName(),
-            'url'=> request()->file('photo')->store('spd','public')  
+            'url'=> request()->file('photo')->storeAs('spd',$originalName,'public')  
         ]);
 
     }
@@ -38,6 +39,7 @@ class PhotosController extends Controller
     public function destroy(Photo $photo)
     {
         $photo->delete();
+        Storage::delete($photo->url);
         return back()->with('success','Photo deleted');
     }
 }

@@ -1,7 +1,9 @@
-
+<form method="POST" action="{{ route('spd.update', $spd) }}">
+    @csrf
+    @method('PUT')
 <div class="row ">
     <div class="col-lg-4">
-        <div class="card mb-4 shadow-sm card-outline card-success">
+        <div class="card shadow-sm card-outline card-success">
 
             <div class="card-body">
 
@@ -178,7 +180,7 @@
         </div>
     </div>
 </div>
-
+</form>
 
 
 @push('styles')
@@ -196,7 +198,7 @@
         $('.editor').summernote({
             placeholder: 'Type here',
 
-            height:'135px',
+            height:'120px',
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],

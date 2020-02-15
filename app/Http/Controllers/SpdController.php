@@ -69,7 +69,7 @@ class SpdController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Spd $spd
      * @return Response
      */
     public function update(SaveSdpResource $request, Spd $spd)
@@ -82,11 +82,14 @@ class SpdController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Spd $spd
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Spd $spd)
     {
-        //
+        $spd->delete();
+
+        return back()
+            ->with('info', 'The Sku has been delete successfully');
     }
 }
